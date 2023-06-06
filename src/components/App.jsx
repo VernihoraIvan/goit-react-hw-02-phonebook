@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import Contacts from './Contacts/Contacts';
-import Input from './Input/Input';
+import ContactForm from './ContactForm/ContactForm';
 import Section from './Section/Section';
 import FilterInput from './FilterInput/FilterInput';
 import css from './App.module.css';
@@ -67,7 +67,7 @@ export class App extends Component {
         }}
       >
         <Section title="Phonebook">
-          <Input
+          <ContactForm
             onSubmit={this.handleAddContact}
             // onSaveName={this.handleName()}
           />

@@ -6,9 +6,9 @@ class Contacts extends Component {
     const { contacts, onDeleteContact } = this.props;
 
     return (
-      <ul>
+      <ul className={css.list}>
         {contacts.map(({ id, name, number }) => (
-          <li key={id}>
+          <li key={id} className={css.list_item}>
             {name}: {number}{' '}
             <button
               className={css.button}
