@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 import Contacts from './Contacts/Contacts';
 import ContactForm from './ContactForm/ContactForm';
@@ -67,10 +68,7 @@ export class App extends Component {
         }}
       >
         <Section title="Phonebook">
-          <ContactForm
-            onSubmit={this.handleAddContact}
-            // onSaveName={this.handleName()}
-          />
+          <ContactForm onSubmit={this.handleAddContact} />
         </Section>
         <Section title="Contacts">
           <FilterInput value={filter} handleFilter={this.handleFilter} />
@@ -83,3 +81,13 @@ export class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
+};

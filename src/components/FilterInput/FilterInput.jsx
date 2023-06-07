@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { Component } from 'react';
 import css from './FilterInput.module.css';
 
@@ -22,3 +22,8 @@ class FilterInput extends Component {
 }
 
 export default FilterInput;
+
+FilterInput.propTypes = {
+  value: PropTypes.string.isRequired,
+  handleFilter: PropTypes.func.isRequired,
+};
