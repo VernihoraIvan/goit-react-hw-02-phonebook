@@ -4,6 +4,7 @@ import Contacts from './Contacts/Contacts';
 import ContactForm from './ContactForm/ContactForm';
 import Section from './Section/Section';
 import FilterInput from './FilterInput/FilterInput';
+import { nanoid } from 'nanoid';
 import css from './App.module.css';
 
 export class App extends Component {
@@ -28,13 +29,9 @@ export class App extends Component {
     this.setState({ filter: event.target.value });
   };
 
-  formSubmitHandler = data => {
-    console.log(data);
-  };
-
-  handleAddContact = ({ name, number, id }) => {
+  handleAddContact = ({ name, number }) => {
     const { contacts } = this.state;
-    const newContact = { name, number, id };
+    const newContact = { name, number };
     // console.log(this.state);
     const isExistingContact = contacts.some(
       contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
@@ -46,15 +43,22 @@ export class App extends Component {
     }
 
     return this.setState(prevState => ({
-      contacts: [...prevState.contacts, { name, number, id }],
+      contacts: [
+        ...prevState.contacts,
+        { name: newContact.name, number: newContact.number, id: nanoid() },
+      ],
     }));
   };
-
-  render() {
+  filtered = () => {
     const { contacts, filter } = this.state;
     const filteredContacts = contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
+    return filteredContacts;
+  };
+
+  render() {
+    const filteredContacts = this.filtered();
     return (
       <div
         className={css.container}
@@ -71,7 +75,10 @@ export class App extends Component {
           <ContactForm onSubmit={this.handleAddContact} />
         </Section>
         <Section title="Contacts">
-          <FilterInput value={filter} handleFilter={this.handleFilter} />
+          <FilterInput
+            value={this.state.filter}
+            handleFilter={this.handleFilter}
+          />
           <Contacts
             contacts={filteredContacts}
             onDeleteContact={this.deleteContact}
