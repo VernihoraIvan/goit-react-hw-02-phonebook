@@ -25,7 +25,6 @@ export class App extends Component {
   };
 
   handleFilter = event => {
-    console.log(this);
     this.setState({ filter: event.target.value });
   };
 
