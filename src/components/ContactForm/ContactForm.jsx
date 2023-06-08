@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { nanoid } from 'nanoid';
 
 import css from './ContactForm.module.css';
 
@@ -12,20 +11,10 @@ class ContactForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { name, number } = this.state;
-    // console.log(this.state);
 
-    if (name.trim() !== '' && number.trim() !== '') {
-      const newContact = {
-        id: nanoid(),
-        name: name.trim(),
-        number: number.trim(),
-      };
+    if (name !== '' && number !== '') {
+      const newContact = this.state;
       this.props.onSubmit(newContact);
-      //   this.setState({
-      //     name: '',
-      //     number: '',
-      //   });
-      //   console.log(newContact);
     }
     this.reset();
   };
@@ -35,17 +24,10 @@ class ContactForm extends Component {
   };
 
   handleChange = event => {
-    // const { name, value } = event.target;
-
-    // this.setState({ name: event.target.value });
     const { name, value } = event.target;
     this.setState({ [name]: value });
-    // this.setState({ [name]: value });
   };
 
-  // handleChange = (event) => {
-  //         this.setState({[event.target.name]: event.target.value})
-  //         }
   render() {
     return (
       <form onSubmit={this.handleSubmit} className={css.form}>

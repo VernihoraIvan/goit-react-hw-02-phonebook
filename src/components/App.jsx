@@ -32,7 +32,6 @@ export class App extends Component {
   handleAddContact = ({ name, number }) => {
     const { contacts } = this.state;
     const newContact = { name, number };
-    // console.log(this.state);
     const isExistingContact = contacts.some(
       contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
     );
